@@ -1,0 +1,24 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from './app/pages/splashScreen';
+import LoginPage from './app/pages/login';
+import RegisterPage from './app/pages/signup';
+import HomePage from './app/pages/home';
+
+const Stack = createStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={LoginPage} options={{ title: 'Login' }} />
+        <Stack.Screen name="Register" component={RegisterPage} options={{ title: 'Register' }} />
+        <Stack.Screen name="Home" component={HomePage} options={{ title: 'Home' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
