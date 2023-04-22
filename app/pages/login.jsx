@@ -1,14 +1,40 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginPage = ({navigation}: {navigation: any}) => {
+const LoginPage = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     // replace this with your own login logic
-    navigation.navigate('Home');
+    console.log("hi");
+
+    navigation.replace('SelectAvatar')
+
+    AsyncStorage.getItem('userData').then((data) => {
+
+      let userdata = JSON.parse(data);
+      console.log("userData: " , userdata);
+
+      if (userdata.username == email || userdata.email == email) {
+        if (userdata.password == password) {
+          Alert.alert("Success", "Logged in successfully")
+          setTimeout(() => { 
+            navigation.replace('SelectAvatar')
+          },2000)
+
+        } else {
+          Alert.alert("Warning!", "Passwords do not match")
+        }
+      } else {
+        Alert.alert("Warning!", "Username or Email Does Not Exist")
+      }
+
+    })
+    // navigation.replace('SelectAvatar');
   };
+
 
   return (
     <View style={styles.container}>
