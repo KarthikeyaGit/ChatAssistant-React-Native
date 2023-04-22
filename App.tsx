@@ -14,8 +14,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={LoginPage} options={{ title: 'Login'}} />
-        <Stack.Screen name="Register" component={RegisterPage} options={{ title: 'Register'}} />
+        <Stack.Screen name="Login" component={LoginPage} options={{ title: 'Login', headerShown: false}} />
+        <Stack.Screen name="Register" component={RegisterPage} options={{ title: 'Register', headerShown: false}} />
         <Stack.Screen name="SelectAvatar" component={SelectAvatar} options={{ title: 'SelectAvatar' }} />
         <Stack.Screen name="ChatAssist" component={ChatAssist} options={{ title: 'AI Assistant' }} />
 

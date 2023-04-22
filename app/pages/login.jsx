@@ -10,7 +10,7 @@ const LoginPage = ({navigation}) => {
     // replace this with your own login logic
     console.log("hi");
 
-    navigation.replace('SelectAvatar')
+    // navigation.replace('SelectAvatar')
 
     AsyncStorage.getItem('userData').then((data) => {
 
@@ -27,8 +27,11 @@ const LoginPage = ({navigation}) => {
         } else {
           Alert.alert("Warning!", "Passwords do not match")
         }
+      } else if (email.length == 0) {
+        Alert.alert("Warning!", "Please enter your email")
       } else {
         Alert.alert("Warning!", "Username or Email Does Not Exist")
+
       }
 
     })
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ddd',
+    color: '#000',
     padding: 10,
     margin: 10,
     borderRadius: 5,

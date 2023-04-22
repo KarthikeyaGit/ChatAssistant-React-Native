@@ -1,9 +1,35 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
+
+
+
 const ChatAssist = () => {
-  const [messages, setMessages] = useState([]);
+  const welcomeMessages = [
+    "Hi there! Welcome to our chatbot. How can I assist you today?",
+    "Welcome! I'm here to help you with anything you need. Just let me know how I can assist you.",
+    "Hello and welcome! I'm your friendly chatbot. How may I be of service to you today?",
+    "Greetings! Thanks for choosing to chat with me. Let me know how I can help you.",
+    "It's great to have you here! I'm ready to help you with anything you need. What can I assist you with?",
+    "Welcome to our chatbot. I'm here to answer any questions you have and provide you with the information you need.",
+    "Hi there! I'm excited to chat with you today. Let's get started, what can I help you with?",
+    "Good day! I'm your personal chatbot. What can I do for you today?",
+    "Welcome, welcome! I'm here to make your life easier. Just tell me what you need.",
+    "Hello and welcome to our chatbot. Let me know how I can assist you today."
+  ];
+  const [messages, setMessages] = useState([  {    text: welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)],
+    user: {
+      _id: 0,
+    },
+    createdAt: new Date(),
+  },
+]);
+
+
+  console.log("messages", messages);
   const [inputText, setInputText] = useState('');
+
+  
 
   const handleSubmit = () => {
     if (inputText.trim() !== '') {
@@ -15,8 +41,18 @@ const ChatAssist = () => {
         },
         createdAt: new Date(),
       };
-      setMessages([...messages, newMessage]);
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setInputText('');
+      setTimeout(() => { 
+        
+        setMessages((prevMessages) => [...prevMessages, { text: welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)],
+          user: {
+            _id: 0,
+          },
+          createdAt: new Date(),
+        }]);
+
+      },1000)
     }
   };
 
